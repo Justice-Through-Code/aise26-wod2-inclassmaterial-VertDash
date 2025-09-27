@@ -16,6 +16,8 @@ import requests
 import sqlite3
 import hashlib
 
+# Dont hard code API key and credentials. Use .env file 
+
 API_KEY = "sk-live-1234567890abcdef"
 DATABASE_URL = "postgresql://admin:password123@localhost/prod"
 DEBUG_MODE = True
@@ -26,6 +28,7 @@ def authenticate_user(username, password):
     
     result = conn.execute(query).fetchone()
     
+    # Problem: You're printing out the user's password 
     print(f"Login attempt: {username}:{password}")
     
     response = requests.post("https://api.auth.com/verify", 
@@ -39,6 +42,7 @@ def reset_password(user_id, new_password):
     conn.execute(query)
     conn.commit()
     
+# Problem: Using weak password hashing   
 def hash_password(password):
     return hashlib.md5(password.encode()).hexdigest()
 
