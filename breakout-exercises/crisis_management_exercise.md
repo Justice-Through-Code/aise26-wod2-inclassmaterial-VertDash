@@ -23,7 +23,7 @@
 Choose the correct first step:
 - [ ] A) Remove the secrets from the current code
 - [ ] B) Make the repository private
-- [ ] C) Rotate/revoke the compromised credentials immediately
+- [x] C) Rotate/revoke the compromised credentials immediately
 - [ ] D) Delete the problematic commits
 
 **Why is this the right first step?**
@@ -56,6 +56,7 @@ git rebase -i HEAD~3
 ```
 
 **Which option would you choose and why?**
+# Option A safe revert: since repo is public its easier to assume someone already pulled changes.
 _________________________________
 
 ### Phase 3: Prevention Implementation (Last 3 minutes)
@@ -83,6 +84,7 @@ fi
 
 3. **Document the incident:**
 What would you write in your incident report?
+some active API keys were accidentally shared in a public repository. As soon as the mistake was noticed, the keys were changed right away and the code was updated to remove them. We confirmed that the keys were not used by anyone while they were exposed. To prevent this from happening again, we added checks before code is shared and improved the list of files that should never be included in the repository
 _________________________________
 
 ---
